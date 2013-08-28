@@ -1,21 +1,13 @@
 require 'libreconv'
 require 'sinatra'
+require_relative 'lib/document'
 
 set :bind, '0.0.0.0'
 
-get '/' do
-  "Hello world!"
-end
-
 post '/convert' do
-  filename = "conversions/#{params["file"][:filename]}"
+  document = Document.new(params['file'])
 
-  File.open(filename, 'w') do |f|
-    f.write(params['file'][:tempfile].read)
-  end
+  attachment document.convert_to_pdf
 
-  Libreconv.convert(filename, "#{filename}.pdf")
-
-  attachment "#{filename}.pdf"
-  "Here's your file"
+  "Converted file enclosed"
 end
