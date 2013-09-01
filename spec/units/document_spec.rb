@@ -1,11 +1,11 @@
-require_relative '../../lib/document'
+require './lib/document'
 
-describe Document do
+describe Libreservice::Document do
   let(:filename) { "document.docx" }
   let(:file) { File.open("spec/fixtures/document.docx") }
   let(:converter) { double(:converter, convert: "tmp/document.docx.pdf") }
 
-  subject { Document.new({ filename: filename, tempfile: file }, converter: converter) }
+  subject { Libreservice::Document.new({ filename: filename, tempfile: file }, converter: converter) }
 
   after do
     file.close

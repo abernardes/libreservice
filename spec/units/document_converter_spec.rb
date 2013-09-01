@@ -1,6 +1,6 @@
-require_relative '../../lib/document_converter'
+require './lib/document_converter'
 
-describe DocumentConverter do
+describe Libreservice::DocumentConverter do
   describe "#convert" do
     let(:converter) { double(:converter, convert: nil) }
 
@@ -8,7 +8,7 @@ describe DocumentConverter do
       FileUtils.copy "spec/fixtures/document.docx.pdf", "tmp/"
     end
 
-    subject { DocumentConverter.new("tmp/document.docx", converter) }
+    subject { Libreservice::DocumentConverter.new("tmp/document.docx", converter) }
 
     after do
       FileUtils.rm_r Dir.glob('tmp/*')
@@ -25,7 +25,7 @@ describe DocumentConverter do
 
       expect {
         subject.convert
-      }.to raise_error(FailedConversionError)
+      }.to raise_error(Libreservice::FailedConversionError)
     end
 
     it "returns the converted filename" do

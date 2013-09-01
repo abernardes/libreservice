@@ -1,15 +1,14 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'pry'
 require 'rspec'
 require 'rack/test'
-require_relative '../../server.rb'
+require './lib/server'
 
 describe "Requesting a document conversion" do
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    Libreservice::Server
   end
 
   let(:filename) { "spec/fixtures/document.docx" }
@@ -36,7 +35,7 @@ describe "Requesting a document conversion" do
     it "raises an error if conversion failed" do
       expect {
         post "/convert", :file => file
-      }.to raise_error(FailedConversionError)
+      }.to raise_error(Libreservice::FailedConversionError)
     end
   end
 end

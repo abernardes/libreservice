@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+print "Starting daemonized service..."
+if system 'rackup -E production -D -s thin'
+  puts "Done!"
+else
+  puts "Error"
+end
