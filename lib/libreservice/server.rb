@@ -16,3 +16,5 @@ module Libreservice
     end
   end
 end
+
+Libreservice::Server.run!

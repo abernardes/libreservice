@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 
 require 'rspec'
 require 'rack/test'
-require './lib/server'
+require './lib/libreservice/server'
 
 describe "Requesting a document conversion" do
   include Rack::Test::Methods
