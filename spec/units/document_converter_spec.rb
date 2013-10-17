@@ -1,4 +1,4 @@
-require './lib/document_converter'
+require './lib/libreservice/document_converter'
 
 describe Libreservice::DocumentConverter do
   describe "#convert" do

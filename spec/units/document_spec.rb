@@ -1,4 +1,4 @@
-require './lib/document'
+require './lib/libreservice/document'
 
 describe Libreservice::Document do
   let(:filename) { "document.docx" }
