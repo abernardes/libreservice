@@ -1,5 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
+require 'pry'
 require 'rspec'
 require 'rack/test'
 require './lib/libreservice/server'
@@ -16,6 +17,7 @@ describe "Requesting a document conversion" do
 
   before do
     Libreconv.stub(:convert)
+    SecureRandom.stub(:uuid => "1234")
   end
 
   after do
@@ -29,7 +31,7 @@ describe "Requesting a document conversion" do
       FileUtils.copy "spec/fixtures/document.docx.pdf", "tmp/"
       post "/convert", :file => file
 
-      expect(last_response.header["Content-Disposition"]).to eq 'attachment; filename="document.docx.pdf"'
+      expect(last_response.body).to eq({ conversion_status: "OK", document_url: "http://example.org/1234/document.docx.pdf" }.to_json)
     end
 
     it "raises an error if conversion failed" do

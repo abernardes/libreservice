@@ -2,13 +2,15 @@ PATH
   remote: .
   specs:
     libreservice (0.0.2)
+      json
       libreconv
       sinatra
 
 GEM
   remote: https://rubygems.org/
   specs:
-    ffi (1.9.0)
+    ffi (1.9.3)
+    json (1.8.1)
     libreconv (0.8.1)
       spoon
     rack (1.5.2)
